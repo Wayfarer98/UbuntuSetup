@@ -1,0 +1,8 @@
+alias repos="cd /mnt/d/repositories"
+alias MLA="cd /mnt/d/repositories/skole/ThirdYear/MLA"
+alias CBA="cd /mnt/d/repositories/skole/ThirdYear/CBA"
+alias BSc="cd /mnt/d/repositories/skole/ThirdYear/Bachelor"
+alias skole="cd /mnt/d/repositories/skole"
+alias ThirdYear="cd /mnt/d/repositories/skole/ThirdYear"
+alias asm="cd /mnt/d/repositories/Assembly"
+alias AOC="cd /mnt/d/repositories/AdventOfCode"
