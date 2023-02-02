@@ -4,3 +4,4 @@ git
 software-properties-common
 apt-transport-https
 wget
+gpg
