@@ -31,6 +31,7 @@ then
     sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg >> log.txt
     sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list' >> log.txt
     rm -f packages.microsoft.gpg >> log.txt
+    sudo apt-get update >> log.txt
     sudo apt-get install code >> log.txt
 else
     echo -e "\nSkipping vscode installation"
