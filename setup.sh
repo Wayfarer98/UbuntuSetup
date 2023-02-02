@@ -46,4 +46,4 @@ cat ~/.ssh/id_rsa.pub
 echo ""
 read -n 1 -s -p "Press Add SSH key to finish: "
 
-echo -e "\nYou are now set up" >> log.txt
+echo -e "\nYou are now set up\n" >> log.txt
