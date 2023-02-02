@@ -4,8 +4,8 @@
     ```
     sudo visudo
     ```
-    Find the line ``` %admin ALL=(ALL) ALL ```
-    Replace with ``` %admin ALL=(ALL) NOPASSWD:ALL ```
+    Find the line ``` %sudo ALL=(ALL) ALL ```
+    Replace with ``` %sudo ALL=(ALL) NOPASSWD:ALL ```
 
 2. run:
     ```
