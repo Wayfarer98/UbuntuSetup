@@ -37,13 +37,14 @@ else
     echo -e "\nSkipping vscode installation"
 fi
 
-read -n 1 -s -p "Adding ssh key to github, please follow the steps and press enter to continue: "
-read -n 1 -s -p $'\nLogin on github, go to settings -> SSH and GPG keys. Add new ssh key: '
-read -n 1 -s -p $'\nGive a title that explains what device the key belongs to: '
-yes "" | ssh-keygen -o -t rsa -C "$gitemail" >> log.txt
-echo -e "Generated ssh key. Please copy the following public key into github. \n"
-cat ~/.ssh/id_rsa.pub
-echo ""
-read -n 1 -s -p "Press Add SSH key to finish: "
+read -n 1 -s -p "Adding ssh key to github"
+yes "" | ssh-keygen -t ed25519 -C "$gitemail" >> log.txt
+eval "$(ssh-agent -s)" >> log.txt
+
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+&& sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+&& sudo apt update \
+&& sudo apt install gh -y >> log.txt
 
 echo -e "\nYou are now set up\n" >> log.txt
