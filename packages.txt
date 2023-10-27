@@ -11,3 +11,9 @@ cmake
 ninja-build
 gettext
 unzip
+libevent-dev
+ncurses-dev
+bison
+pkg-config
+autotools-dev
+automake

@@ -60,8 +60,6 @@ echo "Installing zsh..."
 sudo apt install zsh -y
 sudo -k chsh -s "$(which zsh)" "$USER"
 
-rm ~/.zshrc
-
 echo "Installing starship..."
 curl -sS https://starship.rs/install.sh | sh
 
