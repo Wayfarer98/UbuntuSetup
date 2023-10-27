@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 cd ~ > log.txt
 
@@ -26,6 +26,7 @@ then
     echo "\tuser = $gituser" >> .gitconfig-work
     echo "\temail = $companyemail" >> .gitconfig-work
     echo "\t#signingkey = add key here" >> .gitconfig-work
+fi
 
 echo "[user]" > .gitconfig
 echo "\tname = $gituser" >> .gitconfig
@@ -41,7 +42,7 @@ echo "\tdefaultBranch = main" >> .gitconfig
 
 echo "Git credentials are set up"
 
-read -n 1 -s -p "Adding ssh key to github"
+echo "Adding ssh key to github"
 yes "" | ssh-keygen -t ed25519 -C "$gitemail"
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
