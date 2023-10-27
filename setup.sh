@@ -65,4 +65,3 @@ echo "Installing starship..."
 curl -sS https://starship.rs/install.sh | sh
 
 echo -e "\nYour initial setup is complete\n"
-echo "Please open and close your terminal" 
