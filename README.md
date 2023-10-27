@@ -14,8 +14,8 @@
     Follow the prompt
 
 3. run:
-    ´´´
+    ```
     sh -C "$(curl -fsSL https://raw.githubusercontent.com/Wayfarer98/UbuntuSetup/master/configure.sh)"
-    ´´´
+    ```
 
 4. If the program terminated without error, you are all set up
