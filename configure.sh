@@ -1,3 +1,5 @@
+#!/bin/sh
+
 cd ~
 
 echo "Getting dotfiles..."
