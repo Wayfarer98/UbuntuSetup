@@ -18,27 +18,23 @@ python -m pip install cmake
 
 read -p 'Please write the name you wish to use for git: ' gituser
 read -p 'Please write the email you wish to use for git: ' gitemail
-read -p 'Do you want to configure a company git config? (y/n)' -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-    read -p 'Write your company email: ' companyemail
-    echo "[user]" > .gitconfig-work
-    echo "\tuser = $gituser" >> .gitconfig-work
-    echo "\temail = $companyemail" >> .gitconfig-work
-    echo "\t#signingkey = add key here" >> .gitconfig-work
-fi
+read -p 'Write your company email: ' companyemail
+echo "[user]" > .gitconfig-work
+echo -e "\tuser = $gituser" >> .gitconfig-work
+echo -e "\temail = $companyemail" >> .gitconfig-work
+echo -e "\t#signingkey = add key here" >> .gitconfig-work
 
 echo "[user]" > .gitconfig
-echo "\tname = $gituser" >> .gitconfig
-echo "\temail = $gitemail" >> .gitconfig
+echo -e "\tname = $gituser" >> .gitconfig
+echo -e "\temail = $gitemail" >> .gitconfig
 echo "# Uncomment below when signingkey has been added" >> .gitconfig
-echo "\t#signing = add key here" >> .gitconfig
+echo -e "\t#signing = add key here" >> .gitconfig
 echo "#[commit]" >> .gitconfig
-echo "\t#gpgsign = true" >> .gitconfig
+echo -e "\t#gpgsign = true" >> .gitconfig
 echo '[includeIf "gitdir:~/Documents/Work/"]' >> .gitconfig
-echo "\tpath = ~/.gitconfig-work" >> .gitconfig
+echo -e "\tpath = ~/.gitconfig-work" >> .gitconfig
 echo "[init]" >> .gitconfig
-echo "\tdefaultBranch = main" >> .gitconfig
+echo -e "\tdefaultBranch = main" >> .gitconfig
 
 echo "Git credentials are set up"
 
