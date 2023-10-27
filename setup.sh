@@ -19,22 +19,23 @@ python -m pip install cmake
 read -p 'Please write the name you wish to use for git: ' gituser
 read -p 'Please write the email you wish to use for git: ' gitemail
 read -p 'Write your company email: ' companyemail
-echo "[user]" > .gitconfig-work
-echo -e "\tuser = $gituser" >> .gitconfig-work
-echo -e "\temail = $companyemail" >> .gitconfig-work
-echo -e "\t#signingkey = add key here" >> .gitconfig-work
+
+echo  "[user]" > .gitconfig-work
+echo "    user = $gituser" >> .gitconfig-work
+echo "    email = $companyemail" >> .gitconfig-work
+echo "    #signingkey = add key here" >> .gitconfig-work
 
 echo "[user]" > .gitconfig
-echo -e "\tname = $gituser" >> .gitconfig
-echo -e "\temail = $gitemail" >> .gitconfig
+echo "    name = $gituser" >> .gitconfig
+echo "    email = $gitemail" >> .gitconfig
 echo "# Uncomment below when signingkey has been added" >> .gitconfig
-echo -e "\t#signing = add key here" >> .gitconfig
+echo "    #signing = add key here" >> .gitconfig
 echo "#[commit]" >> .gitconfig
-echo -e "\t#gpgsign = true" >> .gitconfig
+echo "    #gpgsign = true" >> .gitconfig
 echo '[includeIf "gitdir:~/Documents/Work/"]' >> .gitconfig
-echo -e "\tpath = ~/.gitconfig-work" >> .gitconfig
+echo "    path = ~/.gitconfig-work" >> .gitconfig
 echo "[init]" >> .gitconfig
-echo -e "\tdefaultBranch = main" >> .gitconfig
+echo "    defaultBranch = main" >> .gitconfig
 
 echo "Git credentials are set up"
 
