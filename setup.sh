@@ -58,8 +58,6 @@ curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo 
 # authenticate gh on the web
 echo 'Authenticate the github CLI'
 gh auth login -h github.com -s admin:public_key
-read -p 'Give a title to the ssh key: ' sshkeytitle
-gh ssh-key add ~/.ssh/id_ed25519.pub --title "$sshkeytitle"
 
 # Install zsh
 echo "Installing zsh..."
