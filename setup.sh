@@ -1,50 +1,72 @@
 #!/bin/bash
 
-echo "Updating..."
-sudo apt-get update > log.txt
-echo "Upgrading..."
-sudo apt-get upgrade -y >> log.txt
+cd ~ > log.txt
 
+echo "Updating..."
+sudo apt-get update
+echo "Upgrading..."
+sudo apt-get upgrade -y
+
+wget "https://raw.githubusercontent.com/Wayfarer98/UbuntuSetup/master/packages.txt" >> log.txt
 echo "Installing packages..."
-xargs -a packages.txt sudo apt-get install -y >> log.txt
+xargs -a packages.txt sudo apt-get install -y
+rm packages.txt
 
 echo "Upgrading pip..."
-python -m pip install --upgrade pip >> log.txt
-
-echo "Copying files to root..."
-cp .bash_aliases ~/
-cp .hushlogin ~/
+python -m pip install --upgrade pip
+python -m pip install cmake
 
 read -p 'Please write the name you wish to use for git: ' gituser
 read -p 'Please write the email you wish to use for git: ' gitemail
+read -p 'Do you want to configure a company git config? (y/n)' -n 1 -r
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    read -p 'Write your company email: ' companyemail
+    echo "[user]" > .gitconfig-work
+    echo "\tuser = $gituser" >> .gitconfig-work
+    echo "\temail = $companyemail" >> .gitconfig-work
+    echo "\t#signingkey = add key here" >> .gitconfig-work
 
-git config --global user.name "$gituser" >> log.txt
-git config --global user.email "$gitemail" >> log.txt
+echo "[user]" > .gitconfig
+echo "\tname = $gituser" >> .gitconfig
+echo "\temail = $gitemail" >> .gitconfig
+echo "# Uncomment below when signingkey has been added" >> .gitconfig
+echo "\t#signing = add key here" >> .gitconfig
+echo "#[commit]" >> .gitconfig
+echo "\t#gpgsign = true" >> .gitconfig
+echo '[includeIf "gitdir:~/Documents/Work/"]' >> .gitconfig
+echo "\tpath = ~/.gitconfig-work" >> .gitconfig
+echo "[init]" >> .gitconfig
+echo "\tdefaultBranch = main" >> .gitconfig
 
 echo "Git credentials are set up"
 
-read -p "Do you wish to install vscode? (y/n)" -n 1 -r
-if [[ $REPLY =~ ^[Yy]$ ]]
-then
-    echo -e "\nInstalling vscode..."
-    wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
-    sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg >> log.txt
-    sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list' >> log.txt
-    rm -f packages.microsoft.gpg >> log.txt
-    sudo apt-get update >> log.txt
-    sudo apt-get install code >> log.txt
-else
-    echo -e "\nSkipping vscode installation"
-fi
-
 read -n 1 -s -p "Adding ssh key to github"
-yes "" | ssh-keygen -t ed25519 -C "$gitemail" >> log.txt
-eval "$(ssh-agent -s)" >> log.txt
+yes "" | ssh-keygen -t ed25519 -C "$gitemail"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
 
+# From https://github.com/cli/cli/blob/trunk/docs/install_linux.md
+type -p curl >/dev/null || (sudo apt update && sudo apt install curl -y)
 curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
 && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
 && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
 && sudo apt update \
-&& sudo apt install gh -y >> log.txt
+&& sudo apt install gh -y
 
-echo -e "\nYou are now set up\n" >> log.txt
+# authenticate gh on the web
+echo 'Authenticate the github CLI'
+gh auth login -h github.com -s admin:public_key
+read -p 'Give a title to the ssh key: ' sshkeytitle
+gh ssh-key add ~/.ssh/id_ed25519.pub --title "$sshkeytitle"
+
+# Install zsh
+echo "Installing zsh..."
+sudo apt install zsh -y
+sudo -k chsh -s "$(which zsh)" "$USER"
+
+echo "Installing starship..."
+curl -sS https://starship.rs/install.sh | sh
+
+echo -e "\nYour initial setup is complete\n"
+echo "Please open and close your terminal" 
