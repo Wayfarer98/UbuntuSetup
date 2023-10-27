@@ -51,6 +51,10 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 rm lazygit.tar.gz
 
+echo "Installing nvm and node..."
+PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash'
+nvm install node
+
 
 echo "To finish configuation you need to do the following: "
 echo "1. Change the font of the terminal to the Hack Nerd Font."
