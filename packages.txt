@@ -8,3 +8,6 @@ gpg
 curl
 xclip
 cmake
+ninja-build
+gettext
+unzip
