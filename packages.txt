@@ -7,3 +7,4 @@ wget
 gpg
 curl
 xclip
+cmake
