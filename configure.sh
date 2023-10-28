@@ -53,12 +53,7 @@ rm lazygit.tar.gz
 
 echo "Installing nvm and node..."
 PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash'
-nvm install node
 
 
-echo "To finish configuation you need to do the following: "
-echo "1. Change the font of the terminal to the Hack Nerd Font."
-echo "2. Restart the computer and open tmux (write: tmux)"
-echo "3. If plugins are not installed, write: <prefix> I. Prefix is either <C-a> or <C-b>"
-echo "4. open nvim (nvim .). Neovim will install the plugins from the config"
+echo "Follow the remaining steps in the README to finish configuration"
 

@@ -18,4 +18,12 @@
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/Wayfarer98/UbuntuSetup/master/configure.sh)"
     ```
 
-4. If the program terminated without error, you are all set up
+4. To finish the setup, do the following in order:
+    - Relog on the computer
+    - Change the terminal default font to Hack Nerd Font
+    - Open the terminal and allow oh-my-zsh to install plugins
+    - Run ```nvm install node``` to install the lates version of node
+    - Open tmux by running ```tmux```
+    - If tmux does not automatically install plugins, press <prefix> I. The prefix is currently set to <C-a>. The default is <C-b>
+    - Open neovim by running ```nvim .``` This might be a bit wonky because a lot needs installation
+    - You are now done
