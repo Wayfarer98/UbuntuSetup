@@ -26,4 +26,5 @@
     - Open tmux by running ```tmux```
     - If tmux does not automatically install plugins, press <prefix> I. The prefix is currently set to <C-a>. The default is <C-b>
     - Open neovim by running ```nvim .``` This might be a bit wonky because a lot needs installation
+    - If you wish to rebind caps lock, go to `Tweaks -> Keyboard & Mouse -> Additional Layout Options` and change caps lock behaviour to act as Ctrl
     - You are now done
