@@ -17,3 +17,4 @@ bison
 pkg-config
 autotools-dev
 automake
+gnome-tweaks
