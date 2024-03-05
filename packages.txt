@@ -18,3 +18,5 @@ pkg-config
 autotools-dev
 automake
 gnome-tweaks
+ripgrep
+fd-find

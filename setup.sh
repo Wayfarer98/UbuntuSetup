@@ -10,6 +10,7 @@ sudo apt-get upgrade -y
 wget "https://raw.githubusercontent.com/Wayfarer98/UbuntuSetup/master/packages.txt" >> log.txt
 echo "Installing packages..."
 xargs -a packages.txt sudo apt-get install -y
+ln -s $(which fdfind) ~/.local/bin/fd
 rm packages.txt
 
 echo "Upgrading pip..."
