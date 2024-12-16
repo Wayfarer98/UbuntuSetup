@@ -20,3 +20,4 @@ automake
 gnome-tweaks
 ripgrep
 fd-find
+bat
