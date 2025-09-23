@@ -89,12 +89,12 @@ git reset --hard origin/main
 
 read -p 'Should nerd font be installed and set as system font? (y/n): ' installfont
 
-if [[ $installfont != "y" && $installfont != "n" ]]; then
+if [ $installfont != "y" ] && [ $installfont != "n" ]; then
     echo "Invalid input, defaulting to 'n'"
     installfont="n"
 fi
 
-if [[ "$installfont" == "y" ]]; then
+if [ "$installfont" = "y" ]; then
 
 	echo "Downloading nerd font..."
 	curl -s "https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest" | grep -Po '"browser_download_url": "\K.*(JetBrainsMono).*\.zip' | wget -i - >> log.txt
