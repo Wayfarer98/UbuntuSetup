@@ -77,11 +77,6 @@ echo "    defaultBranch = main" >> .gitconfig
 
 echo "Git credentials are set up"
 
-# Install zsh
-echo "Installing zsh..."
-sudo apt install zsh -y 
-sudo -k chsh -s "$(which zsh)" "$USER" 
-
 echo "Installing starship..."
 curl -sS https://starship.rs/install.sh | sh 
 
@@ -144,6 +139,10 @@ git clone https://github.com/ptavares/zsh-exa.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
+# Install zsh
+echo "Installing zsh..."
+sudo apt install zsh -y 
+sudo -k chsh -s "$(which zsh)" "$USER" 
 
 echo "Installing tmux..."
 git clone https://github.com/tmux/tmux.git
