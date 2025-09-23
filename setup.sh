@@ -169,6 +169,7 @@ rm lazygit.tar.gz lazygit
 
 echo "Installing nvm and node..."
 PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash'
+exec bash
 nvm install node
 
 echo "Installing Ghostty..."
