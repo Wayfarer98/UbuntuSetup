@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~ > log.txt
+cd > log.txt
 
 echo "Updating..."
 sudo apt-get update
@@ -12,7 +12,7 @@ echo "Installing packages..."
 sudo add-apt-repository ppa:dotnet/backports
 sudo apt-get update
 xargs -a packages.txt sudo apt-get install -y
-ln -s $(which fdfind) ~/.local/bin/fd
+ln -s $(which fdfind) $HOME/.local/bin/fd
 rm packages.txt
 
 echo "Upgrading pip..."
@@ -127,7 +127,7 @@ git clone https://github.com/neovim/neovim
 cd neovim
 make CMAKE_BUILD_TYPE=RelWithDebInfo
 sudo make install
-cd ~
+cd
 echo "Install plugins via lazy and treesitter parsers..."
 dotnet tool install -g EasyDotnet
 nvim --headless +"Lazy! install" +qa
@@ -135,13 +135,13 @@ nvim --headless +"TSUpdate" +qa
 
 # Install oh-my-zsh
 echo "Installing oh-my-zsh..."
-cd ~
+cd
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc
 
 echo "Cloning oh-my-zsh plugins..."
-git clone https://github.com/ptavares/zsh-exa.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-exa
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+git clone https://github.com/ptavares/zsh-exa.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-exa
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 
 echo "Installing tmux..."
@@ -152,14 +152,14 @@ sh autogen.sh
 make && sudo make install
 
 echo "Cloning tmux package manager..."
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
 
-~/.tmux/plugins/tpm/bin/install_plugins
+$HOME/.tmux/plugins/tpm/bin/install_plugins
 
 echo "Installing fzf..."
-cd ~
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+cd
+git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
+$HOME/.fzf/install
 
 echo "Installing lazygit..."
 curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"browser_download_url": "\K.*(linux_x86_64).*\.tar.gz"' | wget -i - -O lazygit.tar.gz
