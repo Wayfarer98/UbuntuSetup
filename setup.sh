@@ -9,7 +9,7 @@ sudo apt-get upgrade -y
 
 wget "https://raw.githubusercontent.com/Wayfarer98/UbuntuSetup/master/packages.txt"
 echo "Installing packages..."
-sudo add-apt-repository ppa:dotnet/backports
+sudo add-apt-repository -y ppa:dotnet/backports
 sudo apt-get update
 xargs -a packages.txt sudo apt-get install -y
 ln -s $(which fdfind) $HOME/.local/bin/fd
