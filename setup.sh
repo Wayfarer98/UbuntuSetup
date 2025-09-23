@@ -41,8 +41,8 @@ ssh-add ${sshkeypath}
 	&& sudo apt install gh -y
 
 # authenticate gh on the web
-echo 'Authenticate the github CLI'
-gh auth login -h github.com -s admin:public_key
+echo 'Authenticate the github CLI, press no when asked to upload ssh keys, we will do it manually'
+gh auth login -h github.com -s admin:ssh_signing_key
 
 read -p 'What do you want the title of your github ssh key to be? (e.g. Laptop, Desktop, etc.): ' keytitle
 gh ssh-key add "$sshkeypath" -t "$keytitle - auth" --type authentication 
