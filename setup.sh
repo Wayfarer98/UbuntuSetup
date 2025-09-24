@@ -164,14 +164,20 @@ $HOME/.fzf/install
 ln -s $HOME/.fzf/bin/fzf $HOME/.local/bin/fzf
 
 echo "Installing lazygit..."
-curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"browser_download_url": "\K.*(linux_x86_64).*\.tar.gz"' | wget -i - -O lazygit.tar.gz
+# From https://gist.github.com/steinwaywhw/a4cd19cda655b8249d908261a62687f8
+curl -s https://api.github.com/repos/jesseduffield/lazygit/releases/latest \
+| grep "browser_download_url.*linux_x86_64.tar.gz" \
+| cut -d : -f 2,3 \
+| tr -d \" \
+| wget -qi - -O lazygit.tar.gz
 tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 rm lazygit.tar.gz lazygit
 
 echo "Installing nvm and node..."
 PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash' || true
-exec zsh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 nvm install node
 
 echo "Installing Ghostty..."
