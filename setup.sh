@@ -132,18 +132,17 @@ nvim --headless +"TSUpdate" +qa
 # Install zsh
 echo "Installing zsh..."
 sudo apt install zsh -y 
-sudo -k chsh -s "$(which zsh)" "$USER" 
+
+echo "Cloning oh-my-zsh plugins..."
+git clone https://github.com/ptavares/zsh-exa.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-exa
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 # Install oh-my-zsh
 echo "Installing oh-my-zsh..."
 read -p "If zsh opens up, please exit it by pressing CTRL+D. Press enter to continue." temp
 cd
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc
-
-echo "Cloning oh-my-zsh plugins..."
-git clone https://github.com/ptavares/zsh-exa.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-exa
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
 echo "Installing tmux..."
 git clone https://github.com/tmux/tmux.git
@@ -169,8 +168,8 @@ sudo install lazygit /usr/local/bin
 rm lazygit.tar.gz lazygit
 
 echo "Installing nvm and node..."
-PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash'
-exec bash
+PROFILE=/dev/null bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash' || true
+exec zsh
 nvm install node
 
 echo "Installing Ghostty..."
