@@ -160,6 +160,7 @@ echo "Installing fzf..."
 cd
 git clone --depth 1 https://github.com/junegunn/fzf.git $HOME/.fzf
 $HOME/.fzf/install
+ln -s $HOME/.fzf/bin/fzf $HOME/.local/bin/fzf
 
 echo "Installing lazygit..."
 curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"browser_download_url": "\K.*(linux_x86_64).*\.tar.gz"' | wget -i - -O lazygit.tar.gz
