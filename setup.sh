@@ -128,6 +128,11 @@ echo "Install plugins via lazy and treesitter parsers..."
 dotnet tool install -g EasyDotnet
 nvim --headless +"Lazy! install" +qa
 nvim --headless +"TSUpdate" +qa
+#
+# Install zsh
+echo "Installing zsh..."
+sudo apt install zsh -y 
+sudo -k chsh -s "$(which zsh)" "$USER" 
 
 # Install oh-my-zsh
 echo "Installing oh-my-zsh..."
@@ -138,11 +143,6 @@ echo "Cloning oh-my-zsh plugins..."
 git clone https://github.com/ptavares/zsh-exa.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-exa
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-# Install zsh
-echo "Installing zsh..."
-sudo apt install zsh -y 
-sudo -k chsh -s "$(which zsh)" "$USER" 
 
 echo "Installing tmux..."
 git clone https://github.com/tmux/tmux.git
