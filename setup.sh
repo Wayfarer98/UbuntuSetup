@@ -136,6 +136,7 @@ sudo -k chsh -s "$(which zsh)" "$USER"
 
 # Install oh-my-zsh
 echo "Installing oh-my-zsh..."
+read -p "If zsh opens up, please exit it by pressing CTRL+D. Press enter to continue." temp
 cd
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --keep-zshrc
 
@@ -173,15 +174,6 @@ exec bash
 nvm install node
 
 echo "Installing Ghostty..."
-curl -fsSL https://download.opensuse.org/repositories/home:clayrisser:sid/Debian_Unstable/Release.key | gpg --dearmor | sudo tee /etc/apt/keyrings/home_clayrisser_sid.gpg > /dev/null
-ARCH="$(dpkg --print-architecture)"
-sudo tee /etc/apt/sources.list.d/home:clayrisser:sid.sources > /dev/null <<EOF
-Types: deb
-URIs: http://download.opensuse.org/repositories/home:/clayrisser:/sid/Debian_Unstable/
-Suites: /
-Architectures: $ARCH
-Signed-By: /etc/apt/keyrings/home_clayrisser_sid.gpg
-EOF
-sudo apt update
-sudo apt install ghostty
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/mkasberg/ghostty-ubuntu/HEAD/install.sh)"
 
+echo "Setup complete! Please restart your computer to apply all changes."
