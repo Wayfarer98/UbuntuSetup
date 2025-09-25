@@ -117,6 +117,23 @@ if [ "$installfont" = "y" ]; then
 
 fi
 
+read -p "If on Linux Mint, would you like the themes to be changed? (y/n): " changetheme
+if [ $changetheme != "y" ] && [ $changetheme != "n" ]; then
+    echo "Invalid input, defaulting to 'n'"
+    changetheme="n"
+fi
+
+if [ "$changetheme" = "y" ]; then
+	echo "Changing themes..."
+	gsettings set org.cinnamon.desktop.interface gtk-theme 'Mint-Y-Dark-Purple'
+	gsettings set org.cinnamon.theme name 'Mint-Y-Dark-Purple'
+	gsettings set org.gnome.desktop.interface gtk-theme 'Mint-Y-Dark-Purple'
+	gsettings set org.cinnamon.desktop.interface icon-theme 'Yaru-purple-dark'
+	gsettings set org.gnome.desktop.interface icon-theme 'Yaru-purple-dark'
+	gsettings set org.cinnamon.desktop.interface cursor-theme 'Yaru'
+	gsettings set org.gnome.desktop.interface cursor-theme 'Yaru'
+fi
+
 # Install neovim
 echo "Installing neovim..."
 git clone https://github.com/neovim/neovim
